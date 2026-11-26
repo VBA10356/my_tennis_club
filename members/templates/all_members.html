@@ -40,7 +40,7 @@
         border: none;
     }
 
-    table tr th:nth-child(3) {
+    table tr th:last-child {
         border-top-right-radius: 10px;
         border: none;
     }
@@ -124,13 +124,15 @@
         <table>
         <tr>
             <th>Name</th>
+            <th>Slug</th>
             <th>Hero-Name</th>
             <th>Movie-Date</th>
         </tr>
 
         {% for x in mymembers%}
         <tr>
-            <td><a href="details/{{x.id}}">{{x.firstName}} {{x.lastName}}</a></td>
+            <td><a href="{% url 'details' x.slug %}">{{x.firstName}} {{x.lastName}}</a></td>
+            <td>{{x.slug}}</td>
             <td>{{x.heroName}}</td>
             <td>{{x.movie_year}}</td>
         </tr>

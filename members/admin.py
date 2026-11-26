@@ -4,8 +4,12 @@ from .models import Member
 # Register your models here.
 
 #We can also make changeslike this 
-# class MemberAdmin(admin.ModelAdmin):
-#       list_display = ("firstName", "lastName", "joined_date")
+class MemberAdmin(admin.ModelAdmin):
+      list_display = ("firstName", "lastName", "slug")
+      prepopulated_fields = {"slug": ("firstName", "lastName")}
 
-admin.site.register(Member)
+
+
+admin.site.register(Member, MemberAdmin)
+
 

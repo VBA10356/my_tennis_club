@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .models import Member
@@ -20,8 +20,8 @@ def firstHTML (request):
     template = loader.get_template('myFirst.html')
     return HttpResponse(template.render())
 
-def details(request,id):
-    mymember = Member.objects.get(id=id)
+def details(request,slug):
+    mymember = get_object_or_404(Member, slug=slug)
     template = loader.get_template("details.html")
     
     context = {
