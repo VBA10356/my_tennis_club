@@ -8,6 +8,7 @@ class Member(models.Model):
     heroName = models.CharField(max_length=255, null = True)
     movie_year = models.IntegerField(null = True)
     slug = models.SlugField(max_length=50, blank=True, unique=True)
+    image = models.ImageField(upload_to="member_images/", blank=True)
 
     def __str__(self):
         return f"{self.firstName} {self.lastName}"

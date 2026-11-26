@@ -35,6 +35,12 @@
         border: 1px solid rgb(255, 255, 255);
     }
 
+    .member-image {
+        max-width: 120px;
+        max-height: 120px;
+        object-fit: cover;
+    }
+
     table tr th:nth-child(1) {
         border-top-left-radius: 10px;
         border: none;
@@ -124,6 +130,7 @@
         <table>
         <tr>
             <th>Name</th>
+            <th>Image</th>
             <th>Slug</th>
             <th>Hero-Name</th>
             <th>Movie-Date</th>
@@ -132,6 +139,13 @@
         {% for x in mymembers%}
         <tr>
             <td><a href="{% url 'details' x.slug %}">{{x.firstName}} {{x.lastName}}</a></td>
+            <td>
+                {% if x.image %}
+                    <img class="member-image" src="{{ x.image.url }}" alt="{{ x.firstName }} {{ x.lastName }}">
+                {% else %}
+                    No image provided
+                {% endif %}
+            </td>
             <td>{{x.slug}}</td>
             <td>{{x.heroName}}</td>
             <td>{{x.movie_year}}</td>

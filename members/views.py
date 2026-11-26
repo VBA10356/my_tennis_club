@@ -9,7 +9,7 @@ def main(request):
     return HttpResponse(template.render())
 
 def members (request):
-    mymembers = Member.objects.all().values()
+    mymembers = Member.objects.all()
     template = loader.get_template("all_members.html")
     context = {
         'mymembers':mymembers
