@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 
 from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,6 +145,25 @@ STATIC_ROOT = BASE_DIR / 'productionfiles'
 STATIC_URL = "static/"
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
+
+BLOB_READ_WRITE_TOKEN = os.getenv("BLOB_READ_WRITE_TOKEN")
+if not DEBUG and not BLOB_READ_WRITE_TOKEN:
+    raise ImproperlyConfigured(
+        "Set BLOB_READ_WRITE_TOKEN in production to store uploaded media in Vercel Blob."
+    )
+
+STORAGES = {
+    "default": {
+        "BACKEND": (
+            "members.storage.VercelBlobStorage"
+            if not DEBUG
+            else "django.core.files.storage.FileSystemStorage"
+        ),
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 
 STATICFILES_DIRS = [
     BASE_DIR /'mystaticfiles'
