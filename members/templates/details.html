@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="{% static 'detailStyle.css' %}">
+</head>
+<body>
+    {% include "navbar.html" %}
+    <div class="main-container">
+    <h1>
+        {{mymember.firstName}} {{mymember.lastName}}
+    </h1>
+    <p>HeroName : {{mymember.heroName}}</p>
+    <p>Member Since : {{mymember.movie_year}}</p>
+
+    <p>Back to  <a href="/members">Members</a></p>
+    </div>
+
+    
+</body>
+</html>

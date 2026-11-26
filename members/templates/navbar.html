@@ -1,0 +1,55 @@
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+
+        .navbar > nav {
+        position:relative;
+        top: 0px;
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(253, 253, 253);
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+        width: 80%;
+        margin: 10px;
+        height: 40px;
+        padding: 12px;
+        padding-left: 10px;
+        border-radius: 5px;
+    }
+
+    .navbar nav >div, p {
+        /* background-color: aliceblue; */
+        padding: 6px;
+        height: 60%;
+        display: flex;
+        align-items: center;
+        width: auto;
+        border-radius: 5px;
+        transition-duration: .1s;
+
+    }
+
+    .navbar > th, td a {
+        text-decoration: none;
+        list-style: none;
+        text-decoration: none;
+        /* color: rgb(199, 199, 255); */
+        color: blue;
+        text-align: center;
+    }
+
+    .navbar >.membrane{
+        background-color: rgb(190, 255, 255);
+        transition-duration: .1s;
+    }
+    </style>
+    <div class="navbar">
+    <nav>
+        <div class="home membrane" ><a class="membrane" href="{% url 'main' %}"><i class="fa fa-home" style="font-size: 20px;"></i></a></div>
+
+        <p class="membrane"><a href="{% url 'members' %}">MEMBERS</a></p>
+    </nav>
+    </div>

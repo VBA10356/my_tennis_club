@@ -1,0 +1,19 @@
+{% extends "master.html"%}
+{% block title %}
+{% load static %}
+<title>HomePage - My Hero Club</title>
+<link rel="stylesheet" href="{% static 'detailStyle.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+<h1>
+    My Hero Club
+</h1>
+
+<h3>Members</h3>
+<p>Check out our all -<a href="members/">MEMBERS</a></p>
+</div>
+
+{% endblock %}
