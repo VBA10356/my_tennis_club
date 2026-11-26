@@ -13,8 +13,11 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,9 +31,10 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     host.strip()
-    for host in os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",")
+    for host in os.getenv(
+        "DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1"
+    ).split(",")
     if host.strip()
-    
 ]
 
 vercel_url = os.getenv("VERCEL_URL")
@@ -45,7 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "livereload",
+    
     "django.contrib.staticfiles",
     'members',
 ]
@@ -54,7 +58,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "livereload.middleware.LiveReloadScript",
+    
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -94,9 +98,9 @@ DATABASES = {
         "HOST": os.environ["DB_HOST"],
         "PORT": os.getenv("DB_PORT", "5432"),
         "OPTIONS": {
-            "sslmode": "verify-full",
-            "sslrootcert": str(BASE_DIR / "global-bundle.pem"),
+            "sslmode": "require",
         },
+        "CONN_MAX_AGE": 0,
 
     }
 }
